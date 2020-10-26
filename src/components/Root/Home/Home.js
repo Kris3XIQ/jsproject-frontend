@@ -4,8 +4,8 @@ const Home = () => {
     const [text, setText] = useState("");
 
     useEffect(() => {
-        fetch("http://localhost:3070/")
-        // fetch("https://me-api.kris3xiq-jsramverk.me")
+        // fetch("http://localhost:3070/")
+        fetch("https://project-api.kris3xiq-jsramverk.me.me")
         .then(res => res.json())
         .then(res => setText(res.text))
     })

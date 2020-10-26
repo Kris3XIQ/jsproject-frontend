@@ -136,7 +136,19 @@ body {
   text-align: center;
 }
 
-.top-nav-wrapper .accountInfo .active-user-wrapper {
+.top-nav-wrapper .accountInfo a {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 0;
+  -webkit-box-ordinal-group: 3;
+      -ms-flex-order: 2;
+          order: 2;
+  height: inherit;
+  text-decoration: none;
+}
+
+.top-nav-wrapper .accountInfo a .active-user-wrapper {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -183,6 +195,184 @@ body {
   text-transform: uppercase;
   -webkit-transform: perspective(1px) translateZ(0);
           transform: perspective(1px) translateZ(0);
+}
+
+/* Games Page */
+.page-wrapper {
+  height: 100vh;
+}
+
+.page-wrapper .games-wrapper {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (2fr)[3];
+      grid-template-columns: repeat(3, 2fr);
+  grid-auto-rows: 450px;
+  grid-gap: 10px;
+  -webkit-padding-start: 10%;
+          padding-inline-start: 10%;
+  -webkit-padding-end: 10%;
+          padding-inline-end: 10%;
+}
+
+.page-wrapper .games-wrapper .game-container {
+  padding: 20px;
+}
+
+.page-wrapper .games-wrapper .game-container .game-img {
+  height: 300px;
+  width: 250px;
+}
+
+.page-wrapper .games-wrapper .game-container .game-img img {
+  height: 100%;
+  width: 100%;
+}
+
+/* Buy GameStockGraphPage */
+.game-stock-wrapper {
+  height: 300px;
+  margin: auto;
+  position: relative;
+  text-align: center;
+  width: 35%;
+}
+
+.game-stock-wrapper .game-stock-container {
+  height: inherit;
+}
+
+.game-stock-wrapper .game-stock-container h6,
+.game-stock-wrapper .game-stock-container p,
+.game-stock-wrapper .game-stock-container a {
+  color: #fff;
+  font-family: 'Commissioner', sans-serif;
+  text-decoration: none;
+  text-shadow: none;
+  text-transform: uppercase;
+}
+
+.game-stock-wrapper .game-stock-container button {
+  background-color: #2a2a2a;
+  border: 0;
+  color: #fff;
+  display: block;
+  font-family: 'Commissioner', sans-serif;
+  left: 50%;
+  letter-spacing: 1px;
+  margin: auto;
+  text-transform: uppercase;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  padding: 12px;
+  position: absolute;
+  width: 40%;
+}
+
+.game-stock-wrapper .game-stock-container button:hover {
+  -webkit-box-shadow: inset 0 0 0 2px #fff, 0 0 1px rgba(0, 0, 0, 0);
+          box-shadow: inset 0 0 0 2px #fff, 0 0 1px rgba(0, 0, 0, 0);
+  cursor: pointer;
+}
+
+/* Account Wrapper */
+.account-wrapper,
+.account,
+.funds-wrapper {
+  height: 300px;
+  margin: auto;
+  padding-top: 2%;
+  position: relative;
+  text-align: center;
+  width: 50%;
+}
+
+.account-wrapper .account-container,
+.account-wrapper .funds-form,
+.account .account-container,
+.account .funds-form,
+.funds-wrapper .account-container,
+.funds-wrapper .funds-form {
+  height: inherit;
+}
+
+.account-wrapper .account-container h1,
+.account-wrapper .account-container h5,
+.account-wrapper .account-container h6,
+.account-wrapper .account-container p,
+.account-wrapper .account-container a,
+.account-wrapper .funds-form h1,
+.account-wrapper .funds-form h5,
+.account-wrapper .funds-form h6,
+.account-wrapper .funds-form p,
+.account-wrapper .funds-form a,
+.account .account-container h1,
+.account .account-container h5,
+.account .account-container h6,
+.account .account-container p,
+.account .account-container a,
+.account .funds-form h1,
+.account .funds-form h5,
+.account .funds-form h6,
+.account .funds-form p,
+.account .funds-form a,
+.funds-wrapper .account-container h1,
+.funds-wrapper .account-container h5,
+.funds-wrapper .account-container h6,
+.funds-wrapper .account-container p,
+.funds-wrapper .account-container a,
+.funds-wrapper .funds-form h1,
+.funds-wrapper .funds-form h5,
+.funds-wrapper .funds-form h6,
+.funds-wrapper .funds-form p,
+.funds-wrapper .funds-form a {
+  color: #fff;
+  font-family: 'Commissioner', sans-serif;
+  text-decoration: none;
+  text-shadow: none;
+  text-transform: uppercase;
+}
+
+.account-wrapper .account-container p,
+.account-wrapper .funds-form p,
+.account .account-container p,
+.account .funds-form p,
+.funds-wrapper .account-container p,
+.funds-wrapper .funds-form p {
+  font-size: 12px;
+}
+
+.account-wrapper button,
+.account button,
+.funds-wrapper button {
+  background-color: #2a2a2a;
+  border: 0;
+  color: #fff;
+  display: block;
+  font-family: 'Commissioner', sans-serif;
+  left: 50%;
+  letter-spacing: 1px;
+  margin: auto;
+  text-transform: uppercase;
+  top: 100%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  padding: 12px;
+  position: absolute;
+  width: 20%;
+}
+
+.account-wrapper button:hover,
+.account button:hover,
+.funds-wrapper button:hover {
+  -webkit-box-shadow: inset 0 0 0 2px #fff, 0 0 1px rgba(0, 0, 0, 0);
+          box-shadow: inset 0 0 0 2px #fff, 0 0 1px rgba(0, 0, 0, 0);
+  cursor: pointer;
+}
+
+.funds-wrapper .funds-form button {
+  top: 55%;
 }
 
 /* Login Page */

@@ -85,14 +85,21 @@ body {
             padding-inline-end: 40px;
             text-align: center;
         }
-        .active-user-wrapper {
-            align-items: center;
-            background-color: #0078f2;
+        a {
             display: flex;
             margin: 0;
+            order: 2;
             height: inherit;
-            text-align: center;
-            order: 2
+            text-decoration: none;
+            .active-user-wrapper {
+                align-items: center;
+                background-color: #0078f2;
+                display: flex;
+                margin: 0;
+                height: inherit;
+                text-align: center;
+                order: 2
+            }
         }
         #activeUser {
             align-items: center;
@@ -116,6 +123,135 @@ body {
                 text-transform: uppercase;
                 transform: perspective(1px) translateZ(0);
             }
+        }
+    }
+}
+
+
+/* Games Page */
+
+.page-wrapper {
+    height: 100vh;
+    .games-wrapper {
+        display: grid;
+        grid-template-columns: repeat(3, 2fr);
+        grid-auto-rows: 450px;
+        grid-gap: 10px;
+        padding-inline-start: 10%;
+        padding-inline-end: 10%;
+        .game-container {
+            padding: 20px;
+            .game-img {
+                height: 300px;
+                width: 250px;
+                img {
+                    height: 100%;
+                    width: 100%;
+                }
+            }
+        }
+    }
+}
+
+
+/* Buy GameStockGraphPage */
+
+.game-stock-wrapper {
+    height: 300px;
+    margin: auto;
+    position: relative;
+    text-align: center;
+    width: 35%;
+    .game-stock-container {
+        height: inherit;
+        h6,
+        p,
+        a {
+            color: #fff;
+            font-family: 'Commissioner', sans-serif;
+            text-decoration: none;
+            text-shadow: none;
+            text-transform: uppercase;
+        }
+        button {
+            background-color: #2a2a2a;
+            border: 0;
+            color: #fff;
+            display: block;
+            font-family: 'Commissioner', sans-serif;
+            left: 50%;
+            letter-spacing: 1px;
+            margin: auto;
+            text-transform: uppercase;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            padding: 12px;
+            position: absolute;
+            width: 40%;
+        }
+        button:hover {
+            box-shadow: inset 0 0 0 2px #fff, 0 0 1px rgba(0, 0, 0, 0);
+            cursor: pointer;
+        }
+    }
+}
+
+
+/* Account Wrapper */
+
+.account-wrapper,
+.account,
+.funds-wrapper {
+    height: 300px;
+    margin: auto;
+    padding-top: 2%;
+    position: relative;
+    text-align: center;
+    width: 50%;
+    .account-container,
+    .funds-form {
+        height: inherit;
+        h1,
+        h5,
+        h6,
+        p,
+        a {
+            color: #fff;
+            font-family: 'Commissioner', sans-serif;
+            text-decoration: none;
+            text-shadow: none;
+            text-transform: uppercase;
+        }
+        p {
+            font-size: 12px;
+        }
+    }
+    button {
+        background-color: #2a2a2a;
+        border: 0;
+        color: #fff;
+        display: block;
+        font-family: 'Commissioner', sans-serif;
+        left: 50%;
+        letter-spacing: 1px;
+        margin: auto;
+        text-transform: uppercase;
+        top: 100%;
+        transform: translate(-50%, -50%);
+        padding: 12px;
+        position: absolute;
+        width: 20%;
+    }
+    button:hover {
+        box-shadow: inset 0 0 0 2px #fff, 0 0 1px rgba(0, 0, 0, 0);
+        cursor: pointer;
+    }
+}
+
+.funds-wrapper {
+    .funds-form {
+        button {
+            top: 55%;
         }
     }
 }

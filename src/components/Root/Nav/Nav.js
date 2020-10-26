@@ -22,13 +22,15 @@ const Nav = () => {
     const activeUser = () => {
         return (
             <>
-                <div className="active-user-wrapper">
-                    <div id="activeUser">
-                        <p>
-                            {user}
-                        </p>
+                <Link to="/account/" className="accountClicker">
+                    <div className="active-user-wrapper">
+                        <div id="activeUser">
+                            <p>
+                                {user}
+                            </p>
+                        </div>
                     </div>
-                </div>
+                </Link>
             </>
         );
     };
@@ -58,10 +60,7 @@ const Nav = () => {
                             <Link to="/" className="nav-link-item">Home</Link>
                         </li>
                         <li>
-                            <Link to="/reports" className="nav-link-item">Report</Link>
-                        </li>
-                        <li>
-                            <Link to="/chat" className="nav-link-item">Chat</Link>
+                            <Link to="/games" className="nav-link-item">Games</Link>
                         </li>
                     </ul>
                 </nav>

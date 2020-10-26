@@ -9,8 +9,8 @@ const login = async details => {
             "password": details.password
         })
     };
-    const apiCall = await fetch(`http://localhost:3070/account/login`, fetchOptions);
-    // const apiCall = await fetch(`https://me-api.kris3xiq-jsramverk.me/account/login`, fetchOptions);
+    // const apiCall = await fetch(`http://localhost:3070/account/login`, fetchOptions);
+    const apiCall = await fetch(`http://project-api.kris3xiq-jsramverk.me/account/login`, fetchOptions);
     const res = await apiCall.json();
     return res;
 }

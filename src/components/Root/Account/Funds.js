@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
+import fundsService from "../../../services/funds";
 import loginService from "../../../services/login";
 import { useHistory } from "react-router-dom";
 
-const Login = () => {
-    const history = useHistory();
+const Funds = () => {
+    // const history = useHistory();
+    const [funds, setFunds] = useState("");
     const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
     const [unique, setUnique] = useState("");
+    const [password, setPassword] = useState("");
     const [user, setUser] = useState(null);
     const [errorMessage, setErrorMessage] = useState(null)
 
@@ -36,13 +38,42 @@ const Login = () => {
             setEmail("");
             setPassword("");
             setUnique("");
-            history.push("/account");
+            // history.push("/");
             if (localStorage.getItem("firstLoad")) {
                 window.localStorage.removeItem("firstLoad");
                 window.location.reload();
             }
         } catch (exception) {
             setErrorMessage("Login details didnt match!");
+            setTimeout(() => {
+                setErrorMessage(null);
+            }, 5000);
+            return errorMessage;
+        }
+    };
+
+    const processFunds = async (event) => {
+        event.preventDefault();
+        const email = localStorage.getItem("unique");
+        console.log(email)
+        try {
+            const addFunds = await fundsService.addfunds({
+                email, funds
+            });
+
+            console.log(user);
+            // window.localStorage.setItem("firstLoad", true);
+
+            // setUser(user);
+            // setEmail("");
+            // setPassword("");
+            // history.push("/");
+            // if (localStorage.getItem("firstLoad")) {
+            //     window.localStorage.removeItem("firstLoad");
+            //     window.location.reload();
+            // }
+        } catch (exception) {
+            setErrorMessage("Couldnt complete your order!");
             setTimeout(() => {
                 setErrorMessage(null);
             }, 5000);
@@ -88,10 +119,35 @@ const Login = () => {
         );
     };
 
+    const fundsForm = () => {
+        return (
+            <>
+                <div className="funds-wrapper">
+                    <form onSubmit={processFunds} className="funds-form">
+                        <h1>Funds</h1>
+                        <p>{errorMessage}</p>
+                        <div className="funds-form-input">
+                            <input
+                            type="number"
+                            value={funds}
+                            name="funds"
+                            placeholder="Funds"
+                            autoComplete="on"
+                            onChange={({ target }) => setFunds(target.value)}
+                            required />
+                        </div>
+                        <button type="submit" className="funds-form-button">Add funds!</button>
+                    </form> 
+                </div>
+            </>
+        );
+    };
+
     return (
         <>
             <div className="page-wrapper">
-                <div className="page-container login">
+                <div className="page-container funds">
+                    {user !== null && fundsForm()}
                     {user === null && loginForm()}
                 </div>
             </div>
@@ -99,4 +155,4 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default Funds;
