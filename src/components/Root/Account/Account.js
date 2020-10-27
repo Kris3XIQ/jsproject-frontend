@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import fundsService from "../../../services/funds";
-import loginService from "../../../services/login";
 import { useHistory } from "react-router-dom";
 import { Link } from "react-router-dom";
 
@@ -34,12 +33,12 @@ const Account = () => {
 
     const getFunds = async () => {
         const email = localStorage.getItem("unique");
-        var allStocks = {};
 
         try {
             const accountInfo = await fundsService.getfunds({
                 email
             });
+
             setFunds(accountInfo.funds.currency);
             setCod(accountInfo.cod.amount);
             setCyberpunk(accountInfo.cyberpunk.amount);
@@ -62,12 +61,25 @@ const Account = () => {
                     <div className="account-container">
                         <h5>Current funds:</h5>
                         <p>{funds}</p>
-                        <p>CoD stocks: {cod}</p>
-                        <p>Cyberpunk stocks: {cyberpunk}</p>
-                        <p>Destiny 2 stocks: {destiny2}</p>
-                        <p>New World stocks: {nw}</p>
-                        <p>Stellaris stocks: {stellaris}</p>
-                        <p>WoW stocks: {wow}</p>
+                        <h6>Click on a specific stock to sell one unit</h6>
+                        <Link to="/account/callofdutycw/sell" className="accountAddFunds">
+                            <p>CoD stocks: {cod}</p>
+                        </Link>
+                        <Link to="/account/cyberpunk2077/sell" className="accountAddFunds">
+                            <p>Cyberpunk stocks: {cyberpunk}</p>
+                        </Link>
+                        <Link to="/account/destiny2/sell" className="accountAddFunds">
+                            <p>Destiny 2 stocks: {destiny2}</p>
+                        </Link>
+                        <Link to="/account/newworld/sell" className="accountAddFunds">
+                            <p>New World stocks: {nw}</p>
+                        </Link>
+                        <Link to="/account/stellaris/sell" className="accountAddFunds">
+                            <p>Stellaris stocks: {stellaris}</p>
+                        </Link>
+                        <Link to="/account/wow/sell" className="accountAddFunds">
+                            <p>WoW stocks: {wow}</p>
+                        </Link>
                     </div>
                 </div>
             </>

@@ -53,7 +53,6 @@ const Nav = () => {
     return (
         <>
             <div className="top-nav-wrapper">
-                {/* <h2 className="logo">Kris3XIQ Trading</h2> */}
                 <nav>
                     <ul className="nav-links">
                         <li>

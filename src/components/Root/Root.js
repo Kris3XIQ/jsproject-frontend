@@ -15,6 +15,7 @@ import Login from "./Account/Login";
 import Account from "./Account/Account";
 import Funds from "./Account/Funds";
 import Games from "./Games";
+import Sell from "./Account/Sell";
 
 import '../../style/main.css';
 
@@ -26,13 +27,14 @@ const Root = () => {
                 <Switch>
                     <Route component={Home} exact path="/" />
                     <Route component={Account} exact path="/account" />
-                    <Route component={Funds} exact path="/account/funds" />
                     <Route component={Login} exact path="/account/login" />
                     <Route component={Register} exact path="/account/register" />
+                    <Route component={Funds} exact path="/account/funds" />
+                    <Route component={Sell} exact path="/account/:game/sell" />
                     <Route component={Graph} path = "/games/:game/graph" />
-                    <Route component={Graph} exact path="/graph" />
                     <Route component={Games} exact path ="/games" />
-                    <Route component={Graph} exact path="/games/graph" />
+                    {/* <Route component={Graph} exact path="/graph" />
+                    <Route component={Graph} exact path="/games/graph" /> */}
                     {/* <Route component={Report} exact path="/reports" />
                     <Route component={Report} exact path="/reports/week" />
                     <Route component={Report} exact path="/reports/week/:reportNr" />

@@ -1,24 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 const Home = () => {
-    const [text, setText] = useState("");
-
-    useEffect(() => {
-        // fetch("http://localhost:3070/")
-        fetch("https://project-api.kris3xiq-jsramverk.me.me")
-        .then(res => res.json())
-        .then(res => setText(res.text))
-    })
     return (
         <>
             <div className="homepage-wrapper">
+                <img src={require("../../../static/img/frontpage.jpg")} alt="homepage background"></img>
                 <div className="homepage-container">
-                    <h1>Om mig</h1>
-                    <div className="homepage-text-container">
-                    <p>
-                        {text}
-                    </p>
-                    </div>
+                    <h1>Kris3XIQ</h1>
+                    <h2>Trading</h2>
                 </div>
             </div>
         </>

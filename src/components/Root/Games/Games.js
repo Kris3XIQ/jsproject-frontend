@@ -1,5 +1,5 @@
-import React, { useEffect, useState }  from 'react';
 import io from "socket.io-client";
+import React from "react";
 import { Link } from "react-router-dom";
 
 class Games extends React.Component {
@@ -8,12 +8,12 @@ class Games extends React.Component {
         this.state = { games: [], game: "" };
         this.game = { game: "" }
         // this.socket = io("ws://localhost:3070");
-        this.socket = io("ws://project-api.kris3xiq-jsramverk.me");
+        this.socket = io("https://project-api.kris3xiq-jsramverk.me");
     }
 
     fetchGames = async () => {
         // const apiCall = await fetch("http://localhost:3070/games");
-        const apiCall = await fetch("http://project-api.kris3xiq-jsramverk.me/games");
+        const apiCall = await fetch("https://project-api.kris3xiq-jsramverk.me/games");
         const res = await apiCall.json();
         for (var i = 0; i < res.all.length; i++) {
             let name = res.all[i].name;
@@ -29,7 +29,7 @@ class Games extends React.Component {
 
     updatePrices = async () => {
         // const apiCall = await fetch("http://localhost:3070/games");
-        const apiCall = await fetch("http://project-api.kris3xiq-jsramverk.me/games");
+        const apiCall = await fetch("https://project-api.kris3xiq-jsramverk.me/games");
         const res = await apiCall.json();
         for (var i = 0; i < res.all.length; i++) {
             let price = res.all[i].price;
@@ -48,13 +48,12 @@ class Games extends React.Component {
         return games.map(({ name, price, img, url }, idx) => (
           <div className="game-container" key={idx}>
             <div className="game-img">
-                {/* <img src={`../../../static/img/${img}.jpg`} alt={`Cover of ${name}`}></img> */}
                 <Link to={`/games/${url}/graph`} className="gameGraph">
                     <img src={require(`../../../static/img/${img}`)} alt={`Cover of ${name}`}></img>
                 </Link>
             </div>
-            <h6 className="game-name">{name}:</h6>
-            <span className="game-price">{price}:</span>
+            <h6 className="game-name">{name}</h6>
+            <p className="game-price">Stock price: {price}</p>
           </div>
         ));
     }

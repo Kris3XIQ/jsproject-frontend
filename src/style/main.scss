@@ -1,8 +1,45 @@
-@import url('https://fonts.googleapis.com/css2?family=Commissioner:wght@600&family=Open+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Commissioner:wght@600&family=Poiret+One&family=Open+Sans&display=swap');
 body {
     margin: 0;
     padding: 0;
     background-color: #121212;
+}
+
+.homepage-wrapper {
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    z-index: -1;
+    width: 100vw;
+    img {
+        width: 100%;
+        height: 100%;
+    }
+    .homepage-container {
+        position: absolute;
+        top: 0;
+        width: 50%;
+        h1 {
+            color: #fff;
+            font-family: 'Poiret One', cursive;
+            font-size: 72px;
+            left: 50%;
+            top: 50%;
+            transform: translate(50%, 50%);
+            text-align: center;
+            text-shadow: 5px 5px 3px #010510;
+        }
+        h2 {
+            color: #fff;
+            font-family: 'Poiret One', cursive;
+            font-size: 42px;
+            left: 50%;
+            top: 50%;
+            transform: translate(60%, 50%);
+            text-align: center;
+            text-shadow: 5px 5px 3px #010510;
+        }
+    }
 }
 
 
@@ -135,12 +172,13 @@ body {
     .games-wrapper {
         display: grid;
         grid-template-columns: repeat(3, 2fr);
-        grid-auto-rows: 450px;
+        grid-auto-rows: 400px;
         grid-gap: 10px;
         padding-inline-start: 10%;
         padding-inline-end: 10%;
         .game-container {
             padding: 20px;
+            max-width: 250px;
             .game-img {
                 height: 300px;
                 width: 250px;
@@ -149,6 +187,36 @@ body {
                     width: 100%;
                 }
             }
+            h6 {
+                color: #fff;
+                font-family: 'Commissioner', sans-serif;
+                font-size: 12px;
+                margin-bottom: 10px;
+                text-align: center;
+                text-decoration: none;
+                text-shadow: none;
+                text-transform: uppercase;
+            }
+            p {
+                color: #fff;
+                font-family: 'Commissioner', sans-serif;
+                font-size: 12px;
+                margin-top: 0;
+                text-align: center;
+                text-decoration: none;
+                text-shadow: none;
+                text-transform: uppercase;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 1100px) {
+    .page-wrapper {
+        height: 100vh;
+        .games-wrapper {
+            display: block;
+            padding-inline-start: 22%;
         }
     }
 }
@@ -201,15 +269,18 @@ body {
 
 .account-wrapper,
 .account,
-.funds-wrapper {
-    height: 300px;
+.funds-wrapper,
+.sell-wrapper {
+    height: 350px;
     margin: auto;
     padding-top: 2%;
     position: relative;
     text-align: center;
     width: 50%;
     .account-container,
-    .funds-form {
+    .funds-form,
+    .sell-form {
+        background-color: #202020;
         height: inherit;
         h1,
         h5,
@@ -236,7 +307,7 @@ body {
         letter-spacing: 1px;
         margin: auto;
         text-transform: uppercase;
-        top: 100%;
+        top: 95%;
         transform: translate(-50%, -50%);
         padding: 12px;
         position: absolute;
@@ -248,10 +319,32 @@ body {
     }
 }
 
+.sell-wrapper {
+    width: 300px;
+    height: 200px;
+    .sell-form {
+        .sell-confirm-button {
+            top: 70%;
+            width: 50%;
+        }
+        .accountButton {
+            button {
+                width: 50%;
+                top: 95%;
+            }
+        }
+    }
+}
+
 .funds-wrapper {
     .funds-form {
         button {
             top: 55%;
+        }
+        .accountButton {
+            button {
+                top: 75%;
+            }
         }
     }
 }

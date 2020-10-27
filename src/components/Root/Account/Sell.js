@@ -4,9 +4,8 @@ import loginService from "../../../services/login";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 
-const Funds = () => {
+const Sell = () => {
     const history = useHistory();
-    const [funds, setFunds] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [user, setUser] = useState(null);
@@ -17,7 +16,6 @@ const Funds = () => {
         const currentUserJSON = window.localStorage.getItem("user");
         if (currentUserJSON) {
             const user = JSON.parse(currentUserJSON);
-
             setUser(user);
         }
     }, []);
@@ -51,19 +49,30 @@ const Funds = () => {
         }
     };
 
-    const processFunds = async (event) => {
+    const processSale = async (event) => {
         event.preventDefault();
         const email = localStorage.getItem("unique");
+        // const apiCall = await fetch("http://localhost:3070/games");
+        const apiCall = await fetch("https://project-api.kris3xiq-jsramverk.me/games");
+        const res = await apiCall.json();
+        let url = window.location.pathname.split("/");
+        let stock = (url[2]);
+        let price;
 
+        for (var i = 0; i < res.all.length; i++) {
+            let apiurl = res.all[i].url;
+
+            if (stock === apiurl) {
+                price = res.all.[i].price;
+            }
+        }
         try {
-            setMessage(`Added ${funds} to your account!`);
-            await fundsService.addfunds({ email, funds });
+            setMessage(`Sold one unit of: ${stock}, stock`);
+            await fundsService.sellstock({ email, stock, price });
             return message;
         } catch (exception) {
-            setErrorMessage("Couldnt complete your order!");
-            setTimeout(() => {
-                setErrorMessage(null);
-            }, 5000);
+            setErrorMessage("Failed to complete, not enough stocks");
+            setMessage(null);
             return errorMessage;
         }
     };
@@ -106,25 +115,15 @@ const Funds = () => {
         );
     };
 
-    const fundsForm = () => {
+    const saleForm = () => {
         return (
             <>
-                <div className="funds-wrapper">
-                    <form onSubmit={processFunds} className="funds-form">
-                        <h1>Funds</h1>
+                <div className="sell-wrapper">
+                    <form onSubmit={processSale} className="sell-form">
+                        <h1>Sell stock</h1>
                         <p>{errorMessage}</p>
                         <p>{message}</p>
-                        <div className="funds-form-input">
-                            <input
-                            type="number"
-                            value={funds}
-                            name="funds"
-                            placeholder="Funds"
-                            autoComplete="on"
-                            onChange={({ target }) => setFunds(target.value)}
-                            required />
-                        </div>
-                        <button type="submit" className="funds-form-button">Add funds!</button>
+                        <button type="submit" className="sell-confirm-button">Confirm</button>
                         <Link to="/account" className="accountButton">
                             <button>Back to account</button>
                         </Link>
@@ -138,7 +137,7 @@ const Funds = () => {
         <>
             <div className="page-wrapper">
                 <div className="page-container funds">
-                    {user !== null && fundsForm()}
+                    {user !== null && saleForm()}
                     {user === null && loginForm()}
                 </div>
             </div>
@@ -146,4 +145,4 @@ const Funds = () => {
     );
 };
 
-export default Funds;
+export default Sell;

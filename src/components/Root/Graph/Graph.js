@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import io from "socket.io-client";
 import Chart from "./chart";
 import { Link } from "react-router-dom";
 import buyService from "../../../services/purchase";
+import balance from "../../../services/funds";
 import { withStyles } from "@material-ui/core/styles";
 
 const styles = () => ({
@@ -54,14 +55,12 @@ class Graph extends React.Component {
     componentDidMount() {
         let game = this.props.match.params.game;
         // this.socket = io("ws://localhost:3070");
-        this.socket = io("ws://project-api.kris3xiq-jsramverk.me:3070");
+        this.socket = io("https://project-api.kris3xiq-jsramverk.me");
         this.socket.on("connect", () => {
-            console.log("Connected REACT");
             this.socket.emit("set game", (game));
-            this.socket.on("disconnect", () => {
-                console.log("Bye react")
-                game = "";
-            })
+        })
+        this.socket.on("disconnect", () => {
+            game = "";
         })
 
         this.socket.on("message", (e) => {
@@ -106,6 +105,7 @@ class Graph extends React.Component {
         const divStyleLess = {
             color: 'red'
         }
+
         if (this.state.compare === "more") {
             return <div><p style={divStyleMore}>{this.state.gamePrice}</p><p style={divStyleMore}>+ {this.state.diff}</p></div>
         } else {
@@ -118,18 +118,24 @@ class Graph extends React.Component {
         let gameName = event.target.gameName.value;
         let gamePrice = event.target.gamePrice.value;
         let emailName = window.localStorage.getItem("unique");
-        try {
-            await buyService.purchaseStock({
-                gameName, gamePrice, emailName
-            });
-        } catch (exception) {
-            const errorMessage = "Something went wrong!"
-            return errorMessage;
+        let currentbalance = await balance.checkbalance({ emailName });
+
+        if (currentbalance.currency - gamePrice > 0) {
+            try {
+                await buyService({
+                    gameName, gamePrice, emailName
+                });
+            } catch (exception) {
+                const errorMessage = "Something went wrong!"
+                return errorMessage;
+            }
+        } else {
+            alert("You don't have enough funds! Go to your account page to add more.")
         }
     }
     verifyUser() {
         var user = window.localStorage.getItem("user");
-        console.log("inne")
+
         if (!user) {
             return (
                 <Link to="/account/login" className="nav-link-item">
@@ -158,6 +164,7 @@ class Graph extends React.Component {
     render() {
         const { classes } = this.props;
         var user = window.localStorage.getItem("user");
+
         return (
             <>
                 <div className={classes["chart-container"]}>
@@ -172,8 +179,6 @@ class Graph extends React.Component {
                         <div className="price-compare-container">
                             <div>{this.comparePrice()}</div>
                         </div>
-                        {/* <button className="buy-game-stock" onClick={this.buyStock}>Buy stocks</button>
-                        <button className="buy-game-stock-login">Loginto buy stocks</button> */}
                         {typeof user !== "undefined" && this.verifyUser()}
                     </div>
                 </div>

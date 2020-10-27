@@ -10,13 +10,12 @@ const purchaseStock = async details => {
             "email": details.emailName
         })
     };
+
     // const apiCall = await fetch(`http://localhost:3070/games/${details.gameName}/buystock`, fetchOptions);
-    const apiCall = await fetch(`http://project-api.kris3xiq-jsramverk.me/games/${details.gameName}/buystock`, fetchOptions);
+    const apiCall = await fetch(`https://project-api.kris3xiq-jsramverk.me/games/${details.gameName}/buystock`, fetchOptions);
     const res = await apiCall.json();
 
     return res;
 }
 
-module.exports = {
-    purchaseStock: purchaseStock,
-}
+export default purchaseStock;

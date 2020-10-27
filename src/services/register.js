@@ -11,7 +11,7 @@ const register = async details => {
         })
     };
     // const apiCall = await fetch(`http://localhost:3070/account/register`, fetchOptions);
-    const apiCall = await fetch(`http://project-api.kris3xiq-jsramverk.me/account/register`, fetchOptions);
+    const apiCall = await fetch(`https://project-api.kris3xiq-jsramverk.me/account/register`, fetchOptions);
     const res = await apiCall.json();
 
     return res;

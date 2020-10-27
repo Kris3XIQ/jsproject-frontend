@@ -6,7 +6,6 @@ const Login = () => {
     const history = useHistory();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [unique, setUnique] = useState("");
     const [user, setUser] = useState(null);
     const [errorMessage, setErrorMessage] = useState(null)
 
@@ -28,14 +27,12 @@ const Login = () => {
             window.localStorage.setItem(
                 "user", JSON.stringify(user)
             );
-            setUnique(email)
             window.localStorage.setItem("unique", email);
             window.localStorage.setItem("firstLoad", true);
 
             setUser(user);
             setEmail("");
             setPassword("");
-            setUnique("");
             history.push("/account");
             if (localStorage.getItem("firstLoad")) {
                 window.localStorage.removeItem("firstLoad");
